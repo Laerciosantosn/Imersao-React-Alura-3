@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+export const ButtonLink = styled.button`
   color: var(--blackPurple);
   /* border: 1px solid var(--whitePurple); */
   background: var(--whitePurple);

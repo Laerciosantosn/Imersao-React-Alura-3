@@ -8,6 +8,14 @@ export default createGlobalStyle`
     font-family: 'Roboto', sans-serif;
   }
 
+  html, body, #root {
+    width: 100%;
+  }
+
+  #root {
+    /* min-height: 100vh;    */
+  }
+
 :root {
   --blackPurple: #07020E;
   --primary: #7C57A7;
