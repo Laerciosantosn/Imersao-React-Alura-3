@@ -9,23 +9,23 @@ function Home() {
   return (
     <PageDefault>
 
-    <BannerMain 
-      videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
-      url={dadosIniciais.categorias[0].videos[0].url}
-      videoDescription={'O que é Front-End'}
-    />
+      <BannerMain
+        videoTitle={dadosIniciais.categorias[0].videos[0].titulo}
+        url={dadosIniciais.categorias[0].videos[0].url}
+        videoDescription="O que é Front-End"
+      />
 
-    {dadosIniciais.categorias.map((category, index) => (
-   
-      <Carrosel 
-        key={index}
-        ignoreFirstVideo
-        category={category}
-    />
-    ))}
+      {dadosIniciais.categorias.map((category, index) => (
+
+        <Carrosel
+          key={index}
+          ignoreFirstVideo
+          category={category}
+        />
+      ))}
 
     </PageDefault>
-  )
+  );
 }
 
 export default Home;
