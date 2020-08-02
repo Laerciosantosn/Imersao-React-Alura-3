@@ -4,41 +4,30 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForms';
 
 function CadastroCategoria() {
-  const [categorias, setCategorias] = useState([]);
   const valoresIniciais = {
-    nome: '',
+    titulo: '',
     descricao: '',
     cor: '',
   };
 
-  const [values, setValues] = useState(valoresIniciais);
+  const [categorias, setCategorias] = useState([]);
 
-  function setValue(chave, valor) {
-    setValues({
-      ...values,
-      [chave]: valor,
-    });
-  }
-
-  function handleChange(event) {
-    setValue(
-      event.target.getAttribute('name'),
-      event.target.value,
-    );
-  }
+  const { handleChange, values, clearForms } = useForm(valoresIniciais);
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    setCategorias([...categorias, values.nome]);
+    setCategorias([...categorias, values.titulo]);
 
-    setValues(valoresIniciais);
+    clearForms();
   }
 
   useEffect(() => {
-    const URL_BACKEND = 'http://localhost:3333/categorias';
+    // categoriasRepository.getAllWithVideos();
+    const URL_BACKEND = 'http://localhost:8080/categorias';
 
     fetch(URL_BACKEND).then(async (response) => {
       const resposta = await response.json();
@@ -53,16 +42,16 @@ function CadastroCategoria() {
       <h1>
         Cadastro de categorias:
         {' '}
-        {values.nome}
+        {values.titulo}
       </h1>
 
       <form onSubmit={handleSubmit}>
 
         <FormField
           label="Nome da Categoria: "
-          name="nome"
+          name="titulo"
           type="text"
-          value={values.nome}
+          value={values.titulo}
           onChange={handleChange}
         />
 
@@ -89,8 +78,8 @@ function CadastroCategoria() {
 
       <ul>
         {categorias.map((categoria) => (
-          <li key={`${categoria.nome}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>
